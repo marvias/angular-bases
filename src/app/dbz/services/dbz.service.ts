@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { v4 as uuid } from "uuid";
 import { Character } from '../interfaces/character.interface';
+
 
 @Injectable({providedIn: 'root'})
 export class DbzService {
@@ -7,10 +9,8 @@ export class DbzService {
 
   public addCharacter(character: Character): void {
 
-    const id: string = character.name.slice(0,1) + character.power.toString();
-
     const newCharacter: Character = {
-      id: id,
+      id: uuid(),
       ...character
     };
     this.characters.push(newCharacter);
@@ -21,15 +21,15 @@ export class DbzService {
   }
 
   public characters: Character[] = [{
-    id: 'K1000',
+    id: uuid(),
     name: 'Krillin',
     power: 1000
   }, {
-    id: 'G9500',
+    id: uuid(),
     name: 'Goku',
     power: 9500
   }, {
-    id: 'V7500',
+    id: uuid(),
     name: 'Vegeta',
     power: 7500
   }];
